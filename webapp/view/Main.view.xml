@@ -1,0 +1,87 @@
+<mvc:View xmlns:table="sap.ui.table" controllerName="consultaprodutos.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content >
+            <FlexBox justifyContent="Center">
+                <Input id="inpBusca"/>
+                <Button text="Buscar" press="onPressBuscar"/>
+            </FlexBox>
+
+            <VBox id="productBox" visible="true">
+                <ObjectHeader 
+                    title = "{ModeloProduto>/product/product_name}"
+                    number = "{ModeloProduto>/product/quantity}">
+                    <attributes>
+                        <ObjectAttribute
+                        title="Código de Barras"
+                        text="{ModeloProduto>/code}" />
+                        <ObjectAttribute
+                        title="Marca"
+                        text="{ModeloProduto>/product/brands}" />
+                    </attributes>
+                </ObjectHeader>
+                <Panel headerText="Informações">
+                    <content>
+                        <HBox >
+                            <Image src="{ModeloProduto>/product/image_front_url}" width="5em" press="onClickImage" />
+                                <VBox >
+                                    <ObjectAttribute
+                                    title="Categoria"
+                                    text="{ModeloProduto>/product/categories}" />
+                                    <ObjectAttribute
+                                    title="Avisos"
+                                    text="{ModeloProduto>/product/ecoscore_extended_data/impact/warnings}" />
+                                    <ObjectAttribute
+                                    title="Local de Fabricação"
+                                    text="{ModeloProduto>/product/manufacturing_places}" />
+                                </VBox>
+                        </HBox>
+                    </content>
+                </Panel>
+                <Panel headerText="Ingredientes">
+                    <content>
+                        <HBox >
+                            <Image src="{ModeloProduto>/product/image_ingredients_url}" width="5em" press="onClickImage" />
+                            <Table items="{ModeloProduto>/product/ingredients}">
+                                <columns>
+                                    <Column >
+                                        <Text text="Descrição"/>
+                                    </Column>
+
+                                    <Column >
+                                        <Text text="Porcentagem Mínima"/>
+                                    </Column>
+
+                                    <Column >
+                                        <Text text="Porcentagem Máxima"/>
+                                    </Column>
+
+                                    <Column >
+                                        <Text text="Porcentagem Estimada"/>
+                                    </Column>
+                                </columns>
+
+                                <items>
+                                    <ColumnListItem >
+                                        <cells>
+                                            <Text text="{ModeloProduto>text}"/>
+                                            <Text text="{ModeloProduto>percent_min}"/>
+                                            <Text text="{ModeloProduto>percent_max}"/>
+                                            <Text text="{ModeloProduto>percent_estimate}"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </HBox>
+                    </content>
+                </Panel>
+            </VBox>
+            
+
+
+
+        </content >
+
+    </Page>
+</mvc:View>
